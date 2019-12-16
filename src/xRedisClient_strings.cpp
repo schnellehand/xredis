@@ -65,10 +65,12 @@ bool xRedisClient::set(const RedisDBIdx& dbi, const std::string& key, const char
     }
 }
 
+/*
 bool xRedisClient::setbit(const RedisDBIdx& dbi, const std::string& key, int32_t offset, int64_t newbitValue, int64_t oldbitValue) {
     SETDEFAULTIOTYPE(MASTER);
     return command_integer(dbi, oldbitValue, "SETBIT %s %d %lld", key.c_str(), offset, newbitValue);
 }
+*/
 
 bool xRedisClient::get(const RedisDBIdx& dbi, const std::string& key, std::string& value) {
     SETDEFAULTIOTYPE(SLAVE);

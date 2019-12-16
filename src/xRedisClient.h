@@ -208,7 +208,7 @@ public:
     /* SET         */  bool set(const RedisDBIdx& dbi,     const std::string& key, const char *value, int32_t len, int32_t second);
     /* SET         */  bool set(const RedisDBIdx& dbi,     const std::string& key, const std::string& value, 
         SETPXEX pxex, int32_t expiretime, SETNXXX nxxx);
-    /* SETBIT      */  bool setbit(const RedisDBIdx& dbi,  const std::string& key,  int32_t offset, int64_t newbitValue, int64_t oldbitValue);
+    /* SETBIT      */  //bool setbit(const RedisDBIdx& dbi,  const std::string& key,  int32_t offset, int64_t newbitValue, int64_t oldbitValue);
     /* SETEX       */  bool setex(const RedisDBIdx& dbi,   const std::string& key,  int32_t seconds, const std::string& value);
     /* SETNX       */  bool setnx(const RedisDBIdx& dbi,   const std::string& key,  const std::string& value);
     /* SETRANGE    */  bool setrange(const RedisDBIdx& dbi,const std::string& key,  int32_t offset, const std::string& value, int32_t& length);
