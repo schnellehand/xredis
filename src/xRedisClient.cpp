@@ -128,22 +128,26 @@ void xRedisClient::FreeReply(const rReply* reply)
 
 bool xRedisClient::ConnectRedisCache(const RedisNode *redisnodelist, uint32_t nodecount, uint32_t hashbase, uint32_t cachetype) {
     if (NULL==mRedisPool) {
+        printf("xRedisClient::ConnectRedisCache - NULL==mRedisPool\n");
         return false;
     }
     
     if (!mRedisPool->setHashBase(cachetype, hashbase)) {
+        printf("xRedisClient::ConnectRedisCache - !mRedisPool->setHashBase(cachetype, hashbase)\n");
         return false;
     }
     
     for (uint32_t n = 0; n<nodecount; n++) {
         const RedisNode *pNode = &redisnodelist[n];
         if (NULL==pNode) {
+            printf("xRedisClient::ConnectRedisCache - NULL==pNode\n");
             return false;
         }
 
         bool bRet = mRedisPool->ConnectRedisDB(cachetype, pNode->dbindex, pNode->host, pNode->port, 
             pNode->passwd, pNode->poolsize, pNode->timeout, pNode->role);
         if (!bRet) {
+            printf("xRedisClient::ConnectRedisCache - mRedisPool->ConnectRedisDB == false\n");
             return false;
         }
     }

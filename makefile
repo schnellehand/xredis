@@ -18,7 +18,8 @@ CC:=g++
 OPTIMIZATION?=-O3
 WARNINGS=-Wall -W -Wwrite-strings
 DEBUG?= -g -ggdb
-REAL_CFLAGS=$(OPTIMIZATION) -fPIC $(CFLAGS) $(WARNINGS) $(DEBUG) $(ARCH)
+#REAL_CFLAGS=$(OPTIMIZATION) -fPIC $(CFLAGS) $(WARNINGS) $(DEBUG) $(ARCH)
+REAL_CFLAGS=$(OPTIMIZATION) -fPIC $(CFLAGS) $(WARNINGS) $(DEBUG) $(ARCH) -I/home/wise/add-middleware/deps/include
 REAL_LDFLAGS=$(LDFLAGS) $(ARCH)
 
 DYLIBSUFFIX=so
@@ -70,7 +71,8 @@ static: $(STLIBNAME)
 
 # Binaries:
 xredis-example: 
-	$(CC) examples/xredis-example.cpp     -o examples/xredis-example      $(REAL_CFLAGS) $(REAL_LDFLAGS) -I./src -L./ $< $(STLIBNAME) -Wl,-Bstatic -lhiredis -Wl,-Bdynamic -lpthread
+	#$(CC) examples/xredis-example.cpp     -o examples/xredis-example      $(REAL_CFLAGS) $(REAL_LDFLAGS) -I./src -L./ $< $(STLIBNAME) -Wl,-Bstatic -lhiredis -Wl,-Bdynamic -lpthread
+	$(CC) examples/xredis-example.cpp     -o examples/xredis-example      $(REAL_CFLAGS) $(REAL_LDFLAGS) -I./src -I/home/wise/add-middleware/deps/include -L./ $< $(STLIBNAME) -Wl,-Bstatic -lhiredis -Wl,-Bdynamic -lpthread
 	$(CC) examples/demo.cpp               -o examples/demo                $(REAL_CFLAGS) $(REAL_LDFLAGS) -I./src -L./ $< $(STLIBNAME) -Wl,-Bstatic -lhiredis -Wl,-Bdynamic -lpthread
 	$(CC) examples/demo_cluster.cpp       -o examples/demo_cluster        $(REAL_CFLAGS) $(REAL_LDFLAGS) -I./src -L./ $< $(STLIBNAME) -Wl,-Bstatic -lhiredis -Wl,-Bdynamic -lpthread
 	$(CC) examples/demo_multi_cluster.cpp -o examples/demo_multi_cluster  $(REAL_LDFLAGS) -I./src -L./ $< $(STLIBNAME) -Wl,-Bstatic  -lhiredis -Wl,-Bdynamic -lpthread
@@ -95,7 +97,9 @@ dep:
 	$(CC) -MM *.cpp
 
 # Installation related variables and target
-PREFIX?=/usr/local
+#PREFIX?=/usr/local
+#PREFIX?=/Users/leicht/workspace/add/OpenDDS-3.13.3
+PREFIX?=/home/wise/add-middleware/deps
 INSTALL_INCLUDE_PATH= $(PREFIX)/include/xredis
 INSTALL_LIBRARY_PATH= $(PREFIX)/lib
 
