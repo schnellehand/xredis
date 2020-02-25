@@ -103,8 +103,14 @@ bool RedisPool::ConnectRedisDB( uint32_t cahcetype,  uint32_t dbindex,
         || (role>SLAVE)
         || (poolsize>MAX_REDIS_CONN_POOLSIZE)) {
             return false;
+        printf("HOST LENGTH : 0 == %d\n", host.length());
+        printf("CACHETYPE %d > %d\n", cahcetype, MAX_REDIS_CACHE_TYPE);
+        printf("DBINDEX %d > %d\n", dbindex, MAX_REDIS_DB_HASHBASE);
+        printf("CACHETYPE %d > %d\n", cahcetype, mTypeSize - 1);
+        printf("ROLE %d > %d\n", role, SLAVE);
+        printf("POOLSIZE %d > %d\n", poolsize, MAX_REDIS_CONN_POOLSIZE);
     }
-
+    printf("RedisPool::ConnectRedisDB - mRedisCacheList[cahcetype].ConnectRedisDB == FALSE\n");
     return mRedisCacheList[cahcetype].ConnectRedisDB(cahcetype, dbindex, host, port,
         passwd, poolsize, timeout, role);
 }
