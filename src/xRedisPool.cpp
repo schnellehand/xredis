@@ -317,6 +317,7 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
                     mStatus = REDISDB_WORKING;
                     bRet = true;
                 } else {
+                    printf("%d %d '%s:%d' %s %d %d %d %d\n", cahcetype, dbindex, host.c_str(), port, passwd.c_str(), poolsize, timeout, role, 0);
                     printf("pRedisconn->RedisConnect() FALSE 1\n");
                     delete pRedisconn;
                 }
