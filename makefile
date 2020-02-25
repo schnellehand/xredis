@@ -37,7 +37,12 @@ ifeq ($(uname_S),SunOS)
   DYLIB_MAKE_CMD=$(CC) -G -o $(DYLIBNAME) -h $(DYLIB_MINOR_NAME) $(LDFLAGS) -lhiredis
   INSTALL= cp -r
 endif
+ifeq ($(uname_S),Linux)
+  PREFIX=/home/wise/add-middleware/deps
+  REAL_CFLAGS+=-I/home/wise/add-middleware/deps/include
+endif
 ifeq ($(uname_S),Darwin)
+  PREFIX=/Users/leicht/workspace/add/OpenDDS-3.13.3
   DYLIBSUFFIX=dylib
   DYLIB_MINOR_NAME=$(LIBNAME).$(XREDIS_MAJOR).$(XREDIS_MINOR).$(DYLIBSUFFIX)
   DYLIB_MAJOR_NAME=$(LIBNAME).$(XREDIS_MAJOR).$(DYLIBSUFFIX)
