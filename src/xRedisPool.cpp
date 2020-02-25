@@ -289,10 +289,15 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
     const std::string& passwd, uint32_t poolsize, uint32_t timeout, int32_t role)
 {
     bool bRet = false;
+    printf("====RedisDBSlice::ConnectRedisNodes====\n");
     if ((host.empty())
         || (cahcetype > MAX_REDIS_CACHE_TYPE)
         || (dbindex > MAX_REDIS_DB_HASHBASE)
         || (poolsize > MAX_REDIS_CONN_POOLSIZE)) {
+        printf("HOST EMPTY %s\n", host.empty() ? "TRUE" : "FALSE");
+        printf("CACHETYPE %d > %d\n", cahcetype , MAX_REDIS_CACHE_TYPE);
+        printf("DBINDEX %d > %d\n", dbindex , MAX_REDIS_DB_HASHBASE);
+        printf("POOLSIZE %d > %d\n", poolsize , MAX_REDIS_CONN_POOLSIZE);
         return false;
     }
 
@@ -336,10 +341,12 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
             mSliceConn.RedisSlaveConn.push_back(pSlaveNode);
             mHaveSlave = true;
         } else {
+            printf("SLAVE != Role %d != %d\n", SLAVE, role);
             bRet = false;
         }
 
     } catch (...) {
+        printf("Error\n");
         return false;
     }
 
