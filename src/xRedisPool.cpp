@@ -172,10 +172,11 @@ redisContext * RedisConn::ConnectWithTimeout()
     ctx = redisConnectWithTimeout(mHost.c_str(), mPort, timeoutVal);
     if (NULL == ctx || ctx->err) {
         if (NULL != ctx) {
+            printf("RedisConn::ConnectWithTimeout - ctx->err\n");
             redisFree(ctx);
             ctx = NULL;
-        } else {
-            
+        } else if (ctx->err) {
+            printf("RedisConn::ConnectWithTimeout - ctx == NULL\n");
         }
     } 
 
