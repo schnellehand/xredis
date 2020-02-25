@@ -210,8 +210,10 @@ bool RedisConn::RedisConnect()
 
     mCtx = ConnectWithTimeout();
     if (NULL==mCtx) {
+        printf("RedisConn::RedisConnect() - NULL == mCtx\n");
         bRet = false;
     } else {
+        printf("RedisConn::RedisConnect() -auth() == FALSE\n");
         bRet = auth();
         mConnStatus = bRet;
     }
