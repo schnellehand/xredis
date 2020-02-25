@@ -307,6 +307,7 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
             for (uint32_t i = 0; i < poolsize; ++i) {
                 RedisConn *pRedisconn = new RedisConn;
                 if (NULL == pRedisconn) {
+                    printf("NULL == pRedisconn CONTINUE 1\n");
                     continue;
                 }
 
@@ -316,6 +317,7 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
                     mStatus = REDISDB_WORKING;
                     bRet = true;
                 } else {
+                    printf("pRedisconn->RedisConnect() FALSE 1\n");
                     delete pRedisconn;
                 }
             }
@@ -327,6 +329,7 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
             for (uint32_t i = 0; i < poolsize; ++i) {
                 RedisConn *pRedisconn = new RedisConn;
                 if (NULL == pRedisconn) {
+                    printf("NULL == pRedisconn CONTINUE 2\n");
                     continue;
                 }
 
@@ -335,6 +338,7 @@ bool RedisDBSlice::ConnectRedisNodes(uint32_t cahcetype, uint32_t dbindex, const
                     pSlaveNode->push_back(pRedisconn);
                     bRet = true;
                 } else {
+                    printf("pRedisconn->RedisConnect() FALSE 2\n");
                     delete pRedisconn;
                 }
             }
